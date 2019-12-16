@@ -1,0 +1,17 @@
+{
+  "name": "todoapp",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^3.19.0"
+  },
+  "scripts": {
+    "bootstrap": "lerna bootstrap",
+    "clean": "lerna clean",
+    "build": "lerna run build",
+    "build:watch": "lerna run build:watch",
+    "start": "lerna run start --stream"
+  }
+}

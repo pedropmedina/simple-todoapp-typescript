@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["es5", "es6", "ESNext.AsyncIterable"],
+    "target": "ES2015",
+    "module": "commonjs",
+    "baseUrl": ".",
+    "rootDir": "src",
+    "outDir": "./build"
+  },
+  "include": ["./src/**/*.ts"]
+}

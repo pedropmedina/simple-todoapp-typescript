@@ -1,0 +1,28 @@
+{
+  "name": "@todoapp/server",
+  "version": "0.0.1",
+  "description": "Api for a simple todo application using typeorm and typegraphql",
+  "devDependencies": {
+    "@types/cors": "^2.8.6",
+    "@types/fs-extra": "^8.0.1",
+    "@types/graphql": "^14.5.0",
+    "@types/node": "^8.0.29",
+    "ts-node": "3.3.0",
+    "ts-node-dev": "^1.0.0-pre.44",
+    "typescript": "3.3.3333"
+  },
+  "dependencies": {
+    "apollo-server-express": "^2.9.13",
+    "class-validator": "^0.11.0",
+    "cors": "^2.8.5",
+    "fs-extra": "^8.1.0",
+    "graphql": "^14.5.8",
+    "pg": "^7.3.0",
+    "reflect-metadata": "^0.1.10",
+    "type-graphql": "^0.17.5",
+    "typeorm": "0.2.21"
+  },
+  "scripts": {
+    "start": "ts-node-dev --respawn src/index.ts"
+  }
+}
