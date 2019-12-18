@@ -39,17 +39,25 @@ export class SignupResolver {
       password: hashedPassword
     }).save();
 
-    // create jwt and send it in the headers
-    const token: string = jwt.sign({ userId: user.id }, 'kl;jsafl;jafl;kj');
-    console.log(token);
+    // create access and refresh tokens
+    const jat: string = jwt.sign(
+      { userId: user.id },
+      process.env.ACCESS_TOKEN_SECRET || '',
+      { expiresIn: '15m' }
+    );
+    const jrt: string = jwt.sign(
+      { userId: user.id },
+      process.env.REFRESH_TOKEN_SECRET || '',
+      { expiresIn: '7d' }
+    );
 
     // set cookie
-    res.cookie('jrt', token, {
+    res.cookie('jrt', jrt, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 24 * 7
     });
 
-    return { user, token };
+    return { user, token: jat };
   }
 
   @FieldResolver()

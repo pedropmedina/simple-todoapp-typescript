@@ -14,5 +14,5 @@
     "migrationsDir": "src/migration",
     "subscribersDir": "src/subscriber"
   },
-  "logging": ["query"]
+  "logging": false
 }

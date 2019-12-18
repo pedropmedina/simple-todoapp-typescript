@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
@@ -6,6 +9,7 @@ import { buildSchema } from 'type-graphql';
 
 import { connect } from './db';
 import { GraphQLSchema } from 'graphql';
+import { getCurrentUser } from './utils/getCurrentUser';
 
 const generateSchema = async (): Promise<GraphQLSchema> => {
   try {
@@ -32,7 +36,14 @@ const generateSchema = async (): Promise<GraphQLSchema> => {
   // instantiate apollo server
   const apolloServer = new ApolloServer({
     schema,
-    context: ({ req, res }) => ({ req, res })
+    context: async ({ req, res }) => {
+      // find current user
+      const authorization: string = req.headers.authorization || '';
+      const token: string = authorization ? authorization.split(' ')[1] : '';
+      const user = token ? await getCurrentUser(token) : null;
+
+      return { req, res, user };
+    }
   });
 
   // instantiate express app
