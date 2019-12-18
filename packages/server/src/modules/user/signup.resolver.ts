@@ -1,16 +1,17 @@
-import { Resolver, Mutation, Arg } from 'type-graphql';
+import { Resolver, Mutation, Arg, FieldResolver, Root } from 'type-graphql';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../../entity/User';
 import { SingupInput } from './signup.input';
+import { Auth } from './auth.type';
 
-@Resolver()
+@Resolver(() => User)
 export class SignupResolver {
-  @Mutation(() => User)
+  @Mutation(() => Auth)
   async signup(
     @Arg('input') { firstName, lastName, email, password }: SingupInput
-  ): Promise<User> {
+  ): Promise<Auth> {
     // check for user in db
     let user: User | undefined = await User.findOne({ email });
 
@@ -33,6 +34,11 @@ export class SignupResolver {
     const token: string = jwt.sign({ userId: user.id }, 'kl;jsafl;jafl;kj');
     console.log(token);
 
-    return user;
+    return { user, token };
+  }
+
+  @FieldResolver()
+  todos(@Root() user: User) {
+    return !user.todos ? [] : user.todos;
   }
 }

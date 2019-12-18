@@ -3,7 +3,8 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
-  BaseEntity
+  BaseEntity,
+  CreateDateColumn
 } from 'typeorm';
 import { Todo } from './Todo';
 import { ObjectType, Field, ID } from 'type-graphql';
@@ -30,14 +31,15 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  @Field(() => [Todo])
+  @Field(() => [Todo], { nullable: true })
   @OneToMany(
     () => Todo,
-    todo => todo.user
+    todo => todo.user,
+    { cascade: true }
   )
   todos: Todo[];
 
   @Field()
-  @Column({ default: new Date() })
+  @CreateDateColumn()
   createdAt: Date;
 }

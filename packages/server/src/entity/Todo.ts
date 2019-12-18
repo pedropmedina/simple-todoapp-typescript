@@ -3,7 +3,8 @@ import {
   Column,
   PrimaryGeneratedColumn,
   Entity,
-  ManyToOne
+  ManyToOne,
+  CreateDateColumn
 } from 'typeorm';
 import { User } from './User';
 import { ObjectType, Field } from 'type-graphql';
@@ -33,4 +34,8 @@ export class Todo extends BaseEntity {
     user => user.todos
   )
   user: User;
+
+  @Field()
+  @CreateDateColumn()
+  createdAt: Date;
 }

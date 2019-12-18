@@ -6,7 +6,6 @@
   "password": "test",
   "database": "todoapp_db",
   "synchronize": true,
-  "logging": false,
   "entities": ["src/entity/**/*.ts"],
   "migrations": ["src/migration/**/*.ts"],
   "subscribers": ["src/subscriber/**/*.ts"],
@@ -14,5 +13,6 @@
     "entitiesDir": "src/entity",
     "migrationsDir": "src/migration",
     "subscribersDir": "src/subscriber"
-  }
+  },
+  "logging": ["query"]
 }

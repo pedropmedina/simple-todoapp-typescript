@@ -5,13 +5,17 @@
     "packages/*"
   ],
   "devDependencies": {
-    "lerna": "^3.19.0"
+    "add": "^2.0.6",
+    "lerna": "^3.19.0",
+    "yarn": "^1.21.1"
   },
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "clean": "lerna clean",
     "build": "lerna run build",
     "build:watch": "lerna run build:watch",
-    "start": "lerna run start --stream"
+    "start": "lerna run start --stream",
+    "start:server": "yarn run start --scope @todoapp/server",
+    "start:client": "yarn run start --scope @todoapp/client"
   }
 }
