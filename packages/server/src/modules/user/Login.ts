@@ -1,9 +1,9 @@
 import { Resolver, Mutation, Arg, Ctx } from 'type-graphql';
 import bcrypt from 'bcryptjs';
 
-import { LoginInput } from './login.input';
+import { LoginInput } from './login/LoginInput';
 import { User } from '../../entity/User';
-import { Auth } from './auth.type';
+import { Auth } from './objectTypes/Auth';
 import { createToken } from '../../utils/createToken';
 import { Context } from '../../types/Context';
 
@@ -15,7 +15,7 @@ export class LoginResolver {
     @Ctx() { res }: Context
   ) {
     // check for existing user in db
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }, { relations: ['todos'] });
     if (!user) {
       throw new Error('Wrong credentials');
     }

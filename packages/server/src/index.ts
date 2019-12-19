@@ -14,7 +14,7 @@ import { getCurrentUser } from './utils/getCurrentUser';
 const generateSchema = async (): Promise<GraphQLSchema> => {
   try {
     const schema = await buildSchema({
-      resolvers: [__dirname + '/modules/**/*.resolver.ts']
+      resolvers: [__dirname + '/modules/**/*.ts']
     });
     return schema;
   } catch (error) {

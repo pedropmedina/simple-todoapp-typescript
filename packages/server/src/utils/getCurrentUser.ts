@@ -8,7 +8,7 @@ export const getCurrentUser = async (token: string): Promise<User | null> => {
 
   const { userId } = jwt.verify(token, secret) as Token;
 
-  const user = await User.findOne(userId);
+  const user = await User.findOne(userId, { relations: ['todos'] });
 
   return user ? user : null;
 };

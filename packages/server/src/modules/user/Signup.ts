@@ -10,8 +10,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
 import { User } from '../../entity/User';
-import { SingupInput } from './signup.input';
-import { Auth } from './auth.type';
+import { SingupInput } from './signup/SignupInput';
+import { Auth } from './objectTypes/Auth';
 import { Context } from '../../types/context';
 
 @Resolver(() => User)
