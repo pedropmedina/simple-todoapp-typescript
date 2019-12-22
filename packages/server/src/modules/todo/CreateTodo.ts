@@ -2,7 +2,7 @@ import { UseMiddleware, Resolver, Ctx, Arg, Mutation } from 'type-graphql';
 import { Authorize } from '../../middlewares/Authorize';
 import { Todo } from '../../entity/Todo';
 import { Context } from '../../types/Context';
-import { CreateTodoInput } from './createTodo/createTodoInput';
+import { CreateTodoInput } from './createTodo/CreateTodoInput';
 
 @Resolver()
 export class CreateTodoResolver {
