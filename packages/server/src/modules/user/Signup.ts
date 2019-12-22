@@ -7,12 +7,12 @@ import {
   Ctx
 } from 'type-graphql';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 
 import { User } from '../../entity/User';
 import { SingupInput } from './signup/SignupInput';
 import { Auth } from './objectTypes/Auth';
 import { Context } from '../../types/context';
+import { createToken } from '../../utils/createToken';
 
 @Resolver(() => User)
 export class SignupResolver {
@@ -39,23 +39,11 @@ export class SignupResolver {
       password: hashedPassword
     }).save();
 
-    // create access and refresh tokens
-    const jat: string = jwt.sign(
-      { userId: user.id },
-      process.env.ACCESS_TOKEN_SECRET || '',
-      { expiresIn: '15m' }
-    );
-    const jrt: string = jwt.sign(
-      { userId: user.id },
-      process.env.REFRESH_TOKEN_SECRET || '',
-      { expiresIn: '7d' }
-    );
+    // create jrt and jat
+    const jat = createToken('access', { userId: user.id });
+    const jrt = createToken('refresh', { userId: user.id });
 
-    // set cookie
-    res.cookie('jrt', jrt, {
-      httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 * 7
-    });
+    res.cookie('jrt', jrt, { httpOnly: true, maxAge: 1000 * 60 * 60 * 24 * 7 });
 
     return { user, token: jat };
   }

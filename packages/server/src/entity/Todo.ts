@@ -24,7 +24,7 @@ export class Todo extends BaseEntity {
   @Column({ nullable: true })
   description?: string;
 
-  @Field()
+  @Field({ nullable: true })
   @Column({ default: false })
   isDone: boolean;
 
