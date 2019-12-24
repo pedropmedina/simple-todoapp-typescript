@@ -1,0 +1,15 @@
+query GetTodos {
+  getTodos {
+    id
+    title
+    description
+    isDone
+    createdAt
+    user {
+      id
+      firstName
+      lastName
+      email
+    }
+  }
+}

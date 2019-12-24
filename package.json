@@ -16,6 +16,7 @@
     "build:watch": "lerna run build:watch",
     "start": "lerna run start --stream",
     "start:server": "yarn run start --scope @todoapp/server",
-    "start:client": "yarn run start --scope @todoapp/client"
+    "start:client": "yarn run start --scope @todoapp/client",
+    "generate": "lerna run generate --scope @todoapp/client"
   }
 }

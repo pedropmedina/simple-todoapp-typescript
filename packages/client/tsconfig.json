@@ -10,7 +10,8 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "noUnusedLocals": false
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx"]
 }
